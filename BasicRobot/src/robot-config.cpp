@@ -1,4 +1,5 @@
 #include "vex.h"
+#include "DriverControls.h"
 
 using namespace vex;
 using signature = vision::signature;
@@ -8,18 +9,15 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
-controller Controller1 = controller(primary);
-motor M10 = motor(PORT10, ratio18_1, false);
+motor ML = motor(PORT14, ratio18_1, false);
+motor MR = motor(PORT15, ratio18_1, false);
+controller Controller1 = controller(controllerType::primary);
 
 // VEXcode generated functions
-// define variable for remote controller enable/disable
-bool RemoteControlCodeEnabled = true;
 
-/**
- * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
- * 
- * This should be called at the start of your int main function.
- */
+
+
 void vexcodeInit( void ) {
-  // nothing to initialize
+  Controller1.ButtonA.pressed(control::StepUp);
+  Controller1.ButtonB.pressed(control::StepDown);
 }

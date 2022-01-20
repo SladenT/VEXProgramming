@@ -10,8 +10,7 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// M10                  motor         10              
+// Motor15              motor         15              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -27,7 +26,8 @@ int main() {
   exec = true;
   while (exec)
   {
-    ControlBot();    
+    control::ControlBot();    
   }
   
+
 }

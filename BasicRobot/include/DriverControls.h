@@ -1,6 +1,14 @@
-using namespace vex;
+namespace control
+{
+  void ButtonExample();
+  void AxisExample();
+  void StepUp();
+  void StepDown();
+  void TestSong();
 
-/**
- * General control loop for the driver
- */
-void ControlBot();
+  /**
+  * General control loop for the driver
+  */
+  void ControlBot();
+  void TestSong();
+}
