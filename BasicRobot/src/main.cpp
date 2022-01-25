@@ -15,6 +15,7 @@
 
 #include "vex.h"
 #include "DriverControls.h"
+#include "ControllerUI.h"
 
 using namespace vex;
 
@@ -30,7 +31,8 @@ int main() {
   exec = true;
   while (exec)
   {
-    control::ControlBot();    
+    control::ControlBot();
+    UI::DisplayControls();
   }
   
 

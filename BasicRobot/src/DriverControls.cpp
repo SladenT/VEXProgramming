@@ -55,22 +55,20 @@ namespace control
 
     Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);
     Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
-
-    Controller1.Screen.print("HI DAVIS");
   }
 
   void MRControl()
   {
       //Axis 3 = y direction
-      int y = Controller1.Axis3.position(); //Vertical
-      int x = -Controller1.Axis4.position(); //Horizontal
+      int y = Controller1.Axis3.position()*1.6; //Vertical
+      int x = -Controller1.Axis4.position()*1.6; //Horizontal
       MRvel += x+y;
   }
 
   void MLControl()
   {
-      int y = Controller1.Axis3.position();
-      int x = Controller1.Axis4.position();
+      int y = Controller1.Axis3.position()*1.6;
+      int x = Controller1.Axis4.position()*1.6;
       MLvel += x+y;
   }
   void ControlBot()
