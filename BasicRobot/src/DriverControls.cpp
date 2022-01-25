@@ -45,26 +45,27 @@ namespace control
     }
     if (MLvel != 0)
     {
-      ML.spin(directionType::fwd, MLvel, velocityUnits::rpm);
+      ML.spin(directionType::rev, MLvel, velocityUnits::rpm);
     }
     else
     {
       ML.stop();
     }
-    
+    Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);
+    Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
   }
 
   void MRControl()
   {
       int y = Controller1.Axis3.position();
-      int x = Controller1.Axis4.position();
+      int x = -Controller1.Axis4.position();
       MRvel += x+y;
   }
 
   void MLControl()
   {
       int y = Controller1.Axis3.position();
-      int x = -Controller1.Axis4.position();
+      int x = Controller1.Axis4.position();
       MLvel += x+y;
   }
   void ControlBot()
