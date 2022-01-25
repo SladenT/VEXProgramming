@@ -1,10 +1,13 @@
+//Header Guard
+#pragma once
+
 namespace control
 {
-  void ButtonExample();
-  void AxisExample();
-  void StepUp();
-  void StepDown();
-  void TestSong();
+  // void ButtonExample();
+  // void AxisExample();
+  // void StepUp();
+  //void StepDown();
+  // void TestSong();
 
   /**
   * General control loop for the driver

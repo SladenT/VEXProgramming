@@ -20,9 +20,13 @@ using namespace vex;
 
 bool exec;
 
+//Main Loop
 int main() {
+
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
+
+
   exec = true;
   while (exec)
   {

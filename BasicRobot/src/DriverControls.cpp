@@ -1,40 +1,38 @@
 #include "vex.h"
 #include "robot-config.h"
 
-//using namespace vex;
+using namespace vex;
 
 
 namespace control
 {
+
+  //MR == Moter Right
+  //ML == Motor Left
+
   double MRvel = 0;
   double MLvel = 0;
-  double MRstickvel = 0;
-  void ButtonExample()
-  {
-    if (Controller1.ButtonL1.pressing())
-      {
-        MRvel += 100;
-      }
-  }
 
-  void StepUp()
-  {
-    MRstickvel += 1;
-  }
+  //double MRstickvel = 0;
 
-  void StepDown()
-  {
-    MRstickvel -= 1;
-  }
+  /*
+   Example on how to use a button: 
+  
+    Controller1.ButtonL1.pressing()
+      returns boolean, can be used in if statements
 
-  void AxisExample()
-  {
+
+    Example of axis
+
     int pos = Controller1.Axis3.position();
     MRvel += pos;
-  }
+
+  */
 
   void MotorControl()
   {
+
+    //Motor Right
     if (MRvel != 0)
     {
       MR.spin(directionType::fwd, MRvel, velocityUnits::rpm);
@@ -43,6 +41,8 @@ namespace control
     {
       MR.stop();
     }
+
+    //Motor Left
     if (MLvel != 0)
     {
       ML.spin(directionType::rev, MLvel, velocityUnits::rpm);
@@ -51,14 +51,19 @@ namespace control
     {
       ML.stop();
     }
+
+
     Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);
     Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
+
+    Controller1.Screen.print("HI DAVIS");
   }
 
   void MRControl()
   {
-      int y = Controller1.Axis3.position();
-      int x = -Controller1.Axis4.position();
+      //Axis 3 = y direction
+      int y = Controller1.Axis3.position(); //Vertical
+      int x = -Controller1.Axis4.position(); //Horizontal
       MRvel += x+y;
   }
 
@@ -70,12 +75,10 @@ namespace control
   }
   void ControlBot()
   {
-    // vel = stickvel;
-    // AxisExample();
-    // ButtonExample();
-    // MotorControl();
+    //Set vars
     MRvel = 0;
     MLvel = 0;
+
     MRControl();
     MLControl();
     MotorControl();
