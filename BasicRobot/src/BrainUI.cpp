@@ -17,9 +17,13 @@ namespace BrainUI
     //Call this function with any string and it will print it to log, and automatically move to next line. Be careful because there is no overflow yet
     void LogToScreen(std::string str)
     {
-      //if (yPrintPos < ySpacing * maxMessages){
-        
-      //}
+
+      //Reset to account for overflow
+      if (yPrintPos > 220){
+        Brain.Screen.clearScreen();
+        yPrintPos = 20;
+      }
+
       console = ""; //Reset string before printing next line
       console.append(str);
 

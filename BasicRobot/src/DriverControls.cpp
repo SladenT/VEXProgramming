@@ -18,6 +18,10 @@ namespace control
 
   bool pressedA = 0;
   bool pressedB = 0;
+  bool pressedY = 0;
+  bool pressedX = 0;
+
+
 
   /*
    Example on how to use a button: 
@@ -108,7 +112,7 @@ namespace control
     }
   
 
-  //B Button
+  //B Button Single press
     if (Controller1.ButtonB.pressing())
     {
       if (pressedB == 0)
@@ -120,6 +124,33 @@ namespace control
     } else {
       pressedB = 0;
     }
+
+  //Y Button
+    if (Controller1.ButtonY.pressing())
+    {
+      if (pressedY == 0)
+      {
+        BrainUI::LogToScreen("Davis is a bigger weenie");   
+        pressedY = 1; 
+      }
+
+    } else {
+      pressedY = 0;
+    }
+
+  //X Button
+    if (Controller1.ButtonX.pressing())
+    {
+      if (pressedX == 0)
+      {
+        BrainUI::LogToScreen("Weston is a donut sucker");   
+        pressedX = 1; 
+      }
+
+    } else {
+      pressedX = 0;
+    }
+
   }
 }
 
