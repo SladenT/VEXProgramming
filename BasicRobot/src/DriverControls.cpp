@@ -117,7 +117,7 @@ namespace control
     {
       if (pressedB == 0)
       {
-        BrainUI::LogToScreen("Hi John");   
+        BrainUI::LogToScreen("AHHHHHHHHHHHHHHHHHHhh");   
         pressedB = 1; 
       }
 
@@ -130,7 +130,7 @@ namespace control
     {
       if (pressedY == 0)
       {
-        BrainUI::LogToScreen("Davis is a bigger weenie");   
+        BrainUI::LogToScreen("Boop beep");   
         pressedY = 1; 
       }
 
@@ -143,7 +143,7 @@ namespace control
     {
       if (pressedX == 0)
       {
-        BrainUI::LogToScreen("Weston is a donut sucker");   
+        BrainUI::LogToScreen("Beep boop");   
         pressedX = 1; 
       }
 
