@@ -20,8 +20,11 @@ namespace control
   bool pressedB = 0;
   bool pressedY = 0;
   bool pressedX = 0;
+  bool pressedBumper = 0; 
+  
 
-
+  //bumper thebumper = bumper('A');
+  bumper theBumper = bumper(Brain.ThreeWirePort.A);
 
   /*
    Example on how to use a button: 
@@ -117,7 +120,7 @@ namespace control
     {
       if (pressedB == 0)
       {
-        BrainUI::LogToScreen("Hi John");   
+        BrainUI::LogToScreen("AHHHHHHHHHHHHHHHHHHhh");   
         pressedB = 1; 
       }
 
@@ -130,7 +133,6 @@ namespace control
     {
       if (pressedY == 0)
       {
-        BrainUI::LogToScreen("Davis has a bigger weenie");   
         pressedY = 1; 
       }
 
@@ -143,12 +145,25 @@ namespace control
     {
       if (pressedX == 0)
       {
-        BrainUI::LogToScreen("Weston is a donut sucker");   
+        BrainUI::LogToScreen("Beep boop");   
         pressedX = 1; 
       }
 
     } else {
       pressedX = 0;
+    }
+
+
+    if (theBumper.pressing())
+    {
+      if (pressedBumper == 0)
+      {
+        BrainUI::LogToScreen("OUCH");   
+        pressedBumper = 1; 
+      }
+
+    } else {
+      pressedBumper = 0;
     }
 
   }
