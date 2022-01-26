@@ -1,8 +1,9 @@
 #include "vex.h"
 #include "robot-config.h"
 
-using namespace vex;
+#include "BrainUI.h"
 
+using namespace vex;
 
 namespace control
 {
@@ -14,6 +15,9 @@ namespace control
   double MLvel = 0;
 
   //double MRstickvel = 0;
+
+  bool pressedA = 0;
+  bool pressedB = 0;
 
   /*
    Example on how to use a button: 
@@ -53,8 +57,8 @@ namespace control
     }
 
 
-    Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);
-    Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
+    //Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);
+    //Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
   }
 
   void MRControl()
@@ -80,6 +84,42 @@ namespace control
     MRControl();
     MLControl();
     MotorControl();
+
+
+
+
+    //Making keylisteners here later
+
+
+
+    //Testing log function
+
+    //A Button Single Press
+    if (Controller1.ButtonA.pressing())
+    {
+      if (pressedA == 0)
+      {
+        BrainUI::LogToScreen("Testing Log Functionality");   
+        pressedA = 1; 
+      }
+
+    } else {
+      pressedA = 0;
+    }
+  
+
+  //B Button
+    if (Controller1.ButtonB.pressing())
+    {
+      if (pressedB == 0)
+      {
+        BrainUI::LogToScreen("Hi John");   
+        pressedB = 1; 
+      }
+
+    } else {
+      pressedB = 0;
+    }
   }
 }
 
