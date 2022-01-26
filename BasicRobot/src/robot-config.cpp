@@ -20,6 +20,4 @@ controller Controller1 = controller(controllerType::primary);
 void vexcodeInit( void ) {
   
   Controller1.Screen.clearScreen();
-  // Controller1.ButtonA.pressed(control::StepUp);
-  // Controller1.ButtonB.pressed(control::StepDown);
 }
