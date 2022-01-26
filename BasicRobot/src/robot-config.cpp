@@ -1,5 +1,6 @@
 #include "vex.h"
 #include "DriverControls.h"
+#include "ControllerUI.h"
 
 using namespace vex;
 using signature = vision::signature;
@@ -13,11 +14,9 @@ motor ML = motor(PORT14, ratio18_1, false);
 motor MR = motor(PORT15, ratio18_1, false);
 controller Controller1 = controller(controllerType::primary);
 
-// VEXcode generated functions
-
-
-
 void vexcodeInit( void ) {
-  
   Controller1.Screen.clearScreen();
+  UI::ArrangeRow(0, UI::init);
+  UI::ArrangeRow(1, UI::init2);
+  UI::ArrangeRow(2, UI::init3);
 }

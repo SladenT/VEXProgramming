@@ -1,24 +1,51 @@
 #include "vex.h"
 #include "robot-config.h"
 #include "locale.h"
+#include "ControllerUI.h"
 
 namespace UI
 {
-  void DisplayControls()
+  //using std::array;
+ 
+  std::array<UIRow, 3> rows;
+  // Controller UI Data
+  UIElement aInit = {"A  ", "test"};
+  UIElement bInit = {"B  ", "test"};
+  std::array <UIElement, 2> e1 = {aInit, bInit};
+  UIRow init = {0, e1};
+
+
+  UIElement xInit = {"X  ", "test"};
+  UIElement upInit = {"^  ", "test"};
+  std::array <UIElement, 2> e2 = {xInit, upInit};
+  UIRow init2 = {1, e2};
+
+  UIElement YInit = {"Y  ", "test"};
+  UIElement downInit = {"v  ", "test"};
+  std::array <UIElement, 2> e3 = {YInit, downInit};
+  UIRow init3 = {1, e3};
+
+  void UpdateDisplay()
   {
-    char up[1];
-    up[0] = '^';
-    char down[1];
-    down[0] = 'v';
-    char right[1];
-    right[0] = 187;
-    char left[1];
-    left[0] = 171;
-    Controller1.Screen.setCursor(1,0);
-    Controller1.Screen.print("A");
-    Controller1.Screen.setCursor(2,0);
-    Controller1.Screen.print("B");
-    Controller1.Screen.setCursor(3,0);
-    Controller1.Screen.print("X");
+    Controller1.Screen.clearScreen();
+    for (int i = 0; i < rows.size(); i++)
+    {
+      Controller1.Screen.setCursor(i+1,1);
+      Controller1.Screen.print(rows[i].elements[0].icon);
+      Controller1.Screen.print(rows[i].elements[0].info);
+
+      Controller1.Screen.setCursor(i+1,9);
+      Controller1.Screen.print(rows[i].elements[1].icon);
+      Controller1.Screen.print(rows[i].elements[1].info);
+    }
+  }
+  void ArrangeRow(int index, UIRow colData)
+  {
+    if (index > rows.size())
+    {
+      return;
+    }
+    rows[index] = colData;
+    UpdateDisplay();
   }
 }

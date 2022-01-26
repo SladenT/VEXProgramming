@@ -69,14 +69,14 @@ namespace control
   {
       //Axis 3 = y direction
       int y = Controller1.Axis3.position()*1.6; //Vertical
-      int x = -Controller1.Axis4.position()*1.6; //Horizontal
+      int x = Controller1.Axis4.position()*1.6; //Horizontal
       MRvel += x+y;
   }
 
   void MLControl()
   {
       int y = Controller1.Axis3.position()*1.6;
-      int x = Controller1.Axis4.position()*1.6;
+      int x = -Controller1.Axis4.position()*1.6;
       MLvel += x+y;
   }
   void ControlBot()
@@ -130,7 +130,7 @@ namespace control
     {
       if (pressedY == 0)
       {
-        BrainUI::LogToScreen("Davis is a bigger weenie");   
+        BrainUI::LogToScreen("Davis has a bigger weenie");   
         pressedY = 1; 
       }
 
