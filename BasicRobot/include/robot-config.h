@@ -9,6 +9,8 @@ extern brain Brain;
 // VEXcode devices
 extern motor ML;
 extern motor MR;
+extern motor ML2;
+extern motor MR2;
 extern controller Controller1;
 
 /**

@@ -47,20 +47,24 @@ namespace control
     if (MRvel != 0)
     {
       MR.spin(directionType::fwd, MRvel, velocityUnits::rpm);
+      MR2.spin(directionType::fwd, MRvel, velocityUnits::rpm);
     }
     else
     {
       MR.stop();
+      MR2.stop();
     }
 
     //Motor Left
     if (MLvel != 0)
     {
       ML.spin(directionType::rev, MLvel, velocityUnits::rpm);
+      ML2.spin(directionType::rev, MLvel, velocityUnits::rpm);
     }
     else
     {
       ML.stop();
+      ML2.stop();
     }
 
 
@@ -154,17 +158,17 @@ namespace control
     }
 
 
-    if (theBumper.pressing())
-    {
-      if (pressedBumper == 0)
-      {
-        BrainUI::LogToScreen("OUCH");   
-        pressedBumper = 1; 
-      }
+    // if (theBumper.pressing())
+    // {
+    //   if (pressedBumper == 0)
+    //   {
+    //     BrainUI::LogToScreen("OUCH");   
+    //     pressedBumper = 1; 
+    //   }
 
-    } else {
-      pressedBumper = 0;
-    }
+    // } else {
+    //   pressedBumper = 0;
+    // }
 
   }
 }

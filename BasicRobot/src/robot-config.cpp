@@ -12,6 +12,8 @@ brain  Brain;
 // VEXcode device constructors
 motor ML = motor(PORT14, ratio18_1, false);
 motor MR = motor(PORT15, ratio18_1, false);
+motor ML2 = motor(PORT16, ratio18_1, false);
+motor MR2 = motor(PORT17, ratio18_1, false);
 controller Controller1 = controller(controllerType::primary);
 
 void vexcodeInit( void ) {
