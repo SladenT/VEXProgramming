@@ -7,6 +7,7 @@
 //For arm controls
 #include "arm_controller.h"
 
+
 using namespace vex;
 
 namespace control
@@ -26,6 +27,7 @@ namespace control
   bool pressedX = 0;
   bool pressedBumper = 0; 
   
+  int maxRPM = 550;
 
   //bumper thebumper = bumper('A');
   bumper theBumper = bumper(Brain.ThreeWirePort.A);
@@ -79,7 +81,7 @@ namespace control
   void MRControl()
   {
       //Axis 3 = y direction
-      int y = -Util::Lerp(0, 550, Controller1.Axis3.position()/100.0); // Vertical
+      int y = -Util::Lerp(0, maxRPM, Controller1.Axis3.position()/100.0); // Vertical
       int x;
       if (Controller1.Axis4.position() < 10  &&  Controller1.Axis4.position() > -10)
       {
@@ -87,14 +89,14 @@ namespace control
       }
       else
       {
-        x = Util::Lerp(0, 550, Controller1.Axis4.position()/100.0); //Horizontal
+        x = Util::Lerp(0, maxRPM, Controller1.Axis4.position()/100.0); //Horizontal
       } 
       MRvel += x+y;
   }
 
   void MLControl()
   {
-      int y = -Util::Lerp(0, 550, Controller1.Axis3.position()/100.0);
+      int y = -Util::Lerp(0, maxRPM, Controller1.Axis3.position()/100.0);
       int x;
       if (Controller1.Axis4.position() < 10 && Controller1.Axis4.position() > -10)
       {
@@ -102,7 +104,7 @@ namespace control
       }
       else
       {
-        x = -Util::Lerp(0, 550, Controller1.Axis4.position()/100.0);
+        x = -Util::Lerp(0, maxRPM, Controller1.Axis4.position()/100.0);
       }
       MLvel += x+y;
   }
@@ -130,7 +132,9 @@ namespace control
     {
       if (pressedA == 0)
       {
-        BrainUI::LogToScreen("Testing Log Functionality");   
+        BrainUI::LogToScreen("Set RPM to 250");   
+        maxRPM = 250;
+
         pressedA = 1; 
       }
 
@@ -144,7 +148,8 @@ namespace control
     {
       if (pressedB == 0)
       {
-        BrainUI::LogToScreen("AHHHHHHHHHHHHHHHHHHhh");   
+        BrainUI::LogToScreen("Set RPM to 350");   
+        maxRPM = 350;  
         pressedB = 1; 
       }
 
@@ -157,6 +162,9 @@ namespace control
     {
       if (pressedY == 0)
       {
+        BrainUI::LogToScreen("Set RPM to 450");   
+        maxRPM = 450;
+
         pressedY = 1; 
       }
 
@@ -169,7 +177,8 @@ namespace control
     {
       if (pressedX == 0)
       {
-        BrainUI::LogToScreen("Beep boop");   
+        BrainUI::LogToScreen("Set RPM to 550");   
+        maxRPM = 550;
         pressedX = 1; 
       }
 
