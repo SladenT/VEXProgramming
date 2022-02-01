@@ -3,6 +3,9 @@
 
 #include "BrainUI.h"
 
+//For arm controls
+#include "arm_controller.h"
+
 using namespace vex;
 
 namespace control
