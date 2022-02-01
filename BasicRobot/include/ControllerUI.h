@@ -18,4 +18,5 @@ namespace UI
   extern UIRow init3;
 
   void ArrangeRow(int, UIRow);
+  void ArrangeUI(void* col);
 }

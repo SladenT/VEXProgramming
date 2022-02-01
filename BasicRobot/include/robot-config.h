@@ -12,6 +12,7 @@ extern motor MR;
 extern motor ML2;
 extern motor MR2;
 extern controller Controller1;
+extern digital_out doutA;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

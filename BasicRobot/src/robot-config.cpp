@@ -10,15 +10,15 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
-motor ML = motor(PORT14, ratio18_1, false);
-motor MR = motor(PORT15, ratio18_1, false);
-motor ML2 = motor(PORT16, ratio18_1, false);
-motor MR2 = motor(PORT17, ratio18_1, false);
+motor ML = motor(PORT14, ratio6_1, false);
+motor MR = motor(PORT15, ratio6_1, false);
+motor ML2 = motor(PORT16, ratio6_1, false);
+motor MR2 = motor(PORT17, ratio6_1, false);
 controller Controller1 = controller(controllerType::primary);
+digital_out doutA = digital_out(Brain.ThreeWirePort.A);
 
 void vexcodeInit( void ) {
-  Controller1.Screen.clearScreen();
-  UI::ArrangeRow(0, UI::init);
-  UI::ArrangeRow(1, UI::init2);
-  UI::ArrangeRow(2, UI::init3);
+  UI::UIRow test[3] = {UI::init, UI::init2, UI::init3};
+  
+  UI::ArrangeUI(test);
 }

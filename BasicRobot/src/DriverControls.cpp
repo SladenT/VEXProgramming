@@ -2,6 +2,7 @@
 #include "robot-config.h"
 
 #include "BrainUI.h"
+#include "OtherUtil.h"
 
 using namespace vex;
 
@@ -75,15 +76,31 @@ namespace control
   void MRControl()
   {
       //Axis 3 = y direction
-      int y = Controller1.Axis3.position()*1.6; //Vertical
-      int x = Controller1.Axis4.position()*1.6; //Horizontal
+      int y = -Util::Lerp(0, 550, Controller1.Axis3.position()/100.0); // Vertical
+      int x;
+      if (Controller1.Axis4.position() < 10  &&  Controller1.Axis4.position() > -10)
+      {
+        x = 0;
+      }
+      else
+      {
+        x = Util::Lerp(0, 550, Controller1.Axis4.position()/100.0); //Horizontal
+      } 
       MRvel += x+y;
   }
 
   void MLControl()
   {
-      int y = Controller1.Axis3.position()*1.6;
-      int x = -Controller1.Axis4.position()*1.6;
+      int y = -Util::Lerp(0, 550, Controller1.Axis3.position()/100.0);
+      int x;
+      if (Controller1.Axis4.position() < 10 && Controller1.Axis4.position() > -10)
+      {
+        x = 0;
+      }
+      else
+      {
+        x = -Util::Lerp(0, 550, Controller1.Axis4.position()/100.0);
+      }
       MLvel += x+y;
   }
   void ControlBot()

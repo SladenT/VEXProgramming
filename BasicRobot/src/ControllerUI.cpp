@@ -48,4 +48,14 @@ namespace UI
     rows[index] = colData;
     UpdateDisplay();
   }
+  
+  
+  void ArrangeUI(void* col)
+  {
+    rows[0] = ((struct UIRow *)col)[0];
+    rows[1] = ((struct UIRow *)col)[1];
+    rows[2] = ((struct UIRow *)col)[2];
+    UpdateDisplay();
+  }
+  
 }

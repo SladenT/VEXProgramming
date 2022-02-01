@@ -30,7 +30,8 @@ int main() {
   exec = true;
   while (exec)
   {
-    control::ControlBot();    
+    control::ControlBot();
+
   }
   
 

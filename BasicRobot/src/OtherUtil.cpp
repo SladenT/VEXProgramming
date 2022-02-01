@@ -1,6 +1,13 @@
   
   #include "vex.h"
-  
+  namespace Util
+  {
+    // returns from a to b based on scalar t (0,1)
+    float Lerp(float a, float b, float t)
+    {
+      return a + t*(b-a);
+    }
+  }
   void TestSong()
   {
     // M10.spinFor(directionType::fwd, .12, timeUnits::sec, 195.77, velocityUnits::rpm); //D6
