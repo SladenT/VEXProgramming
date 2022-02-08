@@ -59,7 +59,10 @@ namespace control
     MLvel = maxRPM;
   }
 
-
+  void reverse(){
+    MRvel = -maxRPM;
+    MLvel = -maxRPM;
+  }
 
   void MotorControl()
   {
@@ -227,7 +230,8 @@ void buttonPresses(){
 
     buttonPresses();
 
-    BrainUI::LogToScreen(Util::toString(maxRPM));
+    //Testing tostring
+    //BrainUI::LogToScreen(Util::toString(maxRPM));
 
     
 

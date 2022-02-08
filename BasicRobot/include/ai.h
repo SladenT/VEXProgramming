@@ -1,10 +1,8 @@
 #pragma once
 
-namespace AI{
+namespace AI
+{
 
-  void forward();
-  void back();
-  void turnDegrees();
 
 
 }

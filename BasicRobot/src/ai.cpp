@@ -5,23 +5,6 @@
 
 namespace AI{
 
-  void forward()
-  {
-
-  }
-
-
-  void back()
-  {
-
-  }
-
-
-
-  void turnDegrees()
-  {
-
-  }
 
   int checkFrontCarry(){
 
@@ -36,7 +19,7 @@ namespace AI{
   }
 
   void spin(){
-    
+
   }
 
 }
