@@ -47,11 +47,16 @@ namespace control
     MRvel += pos;
 
   */
-
+  
 
   void spin(){
     MRvel = maxRPM;
     MLvel = -maxRPM;
+  }
+
+  void goForward(){
+    MRvel = maxRPM;
+    MLvel = maxRPM;
   }
 
 
@@ -118,34 +123,9 @@ namespace control
       }
       MLvel += x+y;
   }
-  void ControlBot()
-  {
-    //Set vars
-    MRvel = 0;
-    MLvel = 0;
 
 
-    if(control_state == 0)
-    {
-
-      MRControl();
-      MLControl();
-
-    } else {
-      spin();
-    }
-
-    MotorControl();
-
-
-
-
-    //Making keylisteners here later
-
-
-
-    //Testing log function
-
+void buttonPresses(){
     //A Button Single Press
     if (Controller1.ButtonA.pressing())
     {
@@ -215,6 +195,43 @@ namespace control
     } else {
       pressedX = 0;
     }
+
+  }
+
+
+
+
+  void ControlBot()
+  {
+    //Set vars
+    MRvel = 0;
+    MLvel = 0;
+
+
+    if(control_state == 0)
+    {
+
+      MRControl();
+      MLControl();
+
+    } else {
+
+      spin();
+
+    }
+
+    MotorControl();
+
+
+
+
+    buttonPresses();
+
+    BrainUI::LogToScreen(Util::toString(maxRPM));
+
+    
+
+    
 
 
     // if (theBumper.pressing())

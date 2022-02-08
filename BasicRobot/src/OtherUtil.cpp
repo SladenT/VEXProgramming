@@ -1,5 +1,5 @@
-  
-  #include "vex.h"
+#include "vex.h"
+#include "sstream"
   namespace Util
   {
     // returns from a to b based on scalar t (0,1)
@@ -7,7 +7,40 @@
     {
       return a + t*(b-a);
     }
+  
+
+
+    std::string toString(int k){
+      std::stringstream ss;
+      ss << k;
+      std::string s;
+      ss >> s;
+      return s;
+    }
+
+    std::string toString(float k){
+      std::stringstream ss;
+      ss << k;
+      std::string s;
+      ss >> s;
+      return s;
+    }
+
+
+    std::string toString(double k){
+      std::stringstream ss;
+      ss << k;
+      std::string s;
+      ss >> s;
+      return s;
+    }
+
+
+
   }
+
+
+  //Megolovania
   void TestSong()
   {
     // M10.spinFor(directionType::fwd, .12, timeUnits::sec, 195.77, velocityUnits::rpm); //D6
