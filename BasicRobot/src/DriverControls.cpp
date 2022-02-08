@@ -132,8 +132,7 @@ namespace control
       MLControl();
 
     } else {
-      MRvel = maxRPM;
-      MLvel = -maxRPM;
+      spin();
     }
 
     MotorControl();
