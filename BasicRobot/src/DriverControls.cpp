@@ -29,6 +29,8 @@ namespace control
   
   int maxRPM = 550;
 
+  int control_state = 0;
+
   //bumper thebumper = bumper('A');
   bumper theBumper = bumper(Brain.ThreeWirePort.A);
 
@@ -45,6 +47,14 @@ namespace control
     MRvel += pos;
 
   */
+
+
+  void spin(){
+    MRvel = maxRPM;
+    MLvel = -maxRPM;
+  }
+
+
 
   void MotorControl()
   {
@@ -114,8 +124,18 @@ namespace control
     MRvel = 0;
     MLvel = 0;
 
-    MRControl();
-    MLControl();
+
+    if(control_state == 0)
+    {
+
+      MRControl();
+      MLControl();
+
+    } else {
+      MRvel = maxRPM;
+      MLvel = -maxRPM;
+    }
+
     MotorControl();
 
 
@@ -132,8 +152,19 @@ namespace control
     {
       if (pressedA == 0)
       {
-        BrainUI::LogToScreen("Set RPM to 250");   
-        maxRPM = 250;
+           
+        //maxRPM = 250;
+
+        if (control_state == 0){
+          control_state = 1;
+          BrainUI::LogToScreen("SPINNING");
+          spin();
+          
+        } else {
+          control_state = 0;
+          BrainUI::LogToScreen("STOPPING SPINNING");
+        }
+
 
         pressedA = 1; 
       }
