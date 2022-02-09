@@ -7,7 +7,10 @@ using namespace vex;
 
 namespace arm{
 
+  // Adjusts angle of arm at elbow
+  void adjustAngle(){
 
+  }
 
   // clamps the arm
   void grab(){
@@ -16,7 +19,7 @@ namespace arm{
 
   // Releases 
   void release(){
-
+    
   }
 
 }
