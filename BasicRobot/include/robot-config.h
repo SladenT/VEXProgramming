@@ -15,6 +15,8 @@ extern controller Controller1;
 extern digital_out doutA;
 extern inertial accel;
 
+extern bool AImode;
+
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

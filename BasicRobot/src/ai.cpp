@@ -3,25 +3,26 @@
 #include "arm_controller.h"
 
 
+
 namespace AI{
 
-  void forward()
-  {
+  void spin(){
+    control::MRvel = control::maxRPM;
+    control::MLvel = -control::maxRPM;
+  }
 
+  void goForward(){
+    control::MRvel = control::maxRPM;
+    control::MLvel = control::maxRPM;
+  }
+
+  void reverse(){
+    control::MRvel = -control::maxRPM;
+    control::MLvel = -control::maxRPM;
   }
 
 
-  void back()
-  {
 
-  }
-
-
-
-  void turnDegrees()
-  {
-
-  }
 
   int checkFrontCarry(){
 
@@ -35,8 +36,19 @@ namespace AI{
     return 0;
   }
 
-  void spin(){
-    
+  
+  void AILoop(){
+
+    control::MRvel = 0;
+    control::MLvel = 0;
+
+    BrainUI::LogToScreen("ai mode");  
+
+    control::MotorControl();
+    control::buttonPresses();
+
+
   }
+
 
 }

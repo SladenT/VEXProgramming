@@ -1,5 +1,6 @@
 //Header Guard
 #pragma once
+#include "BrainUI.h"
 
 namespace control
 {
@@ -12,6 +13,13 @@ namespace control
   /**
   * General control loop for the driver
   */
-  void ControlBot();
-  void TestSong();
+  extern void ControlBot();
+  extern void TestSong();
+  extern void MotorControl();
+  extern void buttonPresses();
+
+  extern int maxRPM;
+
+  extern int MRvel;
+  extern int MLvel;
 }

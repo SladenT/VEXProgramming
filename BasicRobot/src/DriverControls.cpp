@@ -29,7 +29,7 @@ namespace control
   
   int maxRPM = 550;
 
-  int control_state = 0;
+  //int control_state = 0;
 
   //bumper thebumper = bumper('A');
   bumper theBumper = bumper(Brain.ThreeWirePort.A);
@@ -47,13 +47,7 @@ namespace control
     MRvel += pos;
 
   */
-
-
-  void spin(){
-    MRvel = maxRPM;
-    MLvel = -maxRPM;
-  }
-
+  
 
 
   void MotorControl()
@@ -118,34 +112,10 @@ namespace control
       }
       MLvel += x+y;
   }
-  void ControlBot()
-  {
-    //Set vars
-    MRvel = 0;
-    MLvel = 0;
 
 
-    if(control_state == 0)
-    {
-
-      MRControl();
-      MLControl();
-
-    } else {
-      spin();
-    }
-
-    MotorControl();
-
-
-
-
-    //Making keylisteners here later
-
-
-
-    //Testing log function
-
+//Switch functionality
+void buttonPresses(){
     //A Button Single Press
     if (Controller1.ButtonA.pressing())
     {
@@ -154,14 +124,14 @@ namespace control
            
         //maxRPM = 250;
 
-        if (control_state == 0){
-          control_state = 1;
-          BrainUI::LogToScreen("SPINNING");
-          spin();
+        if (AImode == 0){
+          AImode = 1;
+          BrainUI::LogToScreen("AI Run");
+          //spin();
           
         } else {
-          control_state = 0;
-          BrainUI::LogToScreen("STOPPING SPINNING");
+          AImode = 0;
+          BrainUI::LogToScreen("STOPPING AI");
         }
 
 
@@ -215,6 +185,37 @@ namespace control
     } else {
       pressedX = 0;
     }
+
+  }
+
+  //AI Brain would theoretically go here
+  //void AILoop(){
+
+    //Switch to AI class?
+  //}
+
+
+  void ControlBot()
+  {
+    //Set vars
+    MRvel = 0;
+    MLvel = 0;
+
+
+    MRControl();
+    MLControl();
+
+
+    MotorControl();
+
+    buttonPresses();
+
+    //Testing tostring
+    //BrainUI::LogToScreen(Util::toString(maxRPM));
+
+    
+
+    
 
 
     // if (theBumper.pressing())

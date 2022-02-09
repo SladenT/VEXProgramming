@@ -1,5 +1,7 @@
 //Header Guard
 #pragma once
+#include <string>
+
 
 namespace BrainUI
 {
