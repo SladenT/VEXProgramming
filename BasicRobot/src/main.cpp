@@ -15,6 +15,7 @@
 
 #include "vex.h"
 #include "DriverControls.h"
+#include "ai.h"
 
 using namespace vex;
 
@@ -23,6 +24,8 @@ bool exec;
 //Main Loop
 int main() {
 
+  AImode = false;
+
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
 
@@ -30,7 +33,13 @@ int main() {
   exec = true;
   while (exec)
   {
-    control::ControlBot();
+    if (AImode){
+      AI::AILoop();
+
+    } else {
+      control::ControlBot();
+    }
+    
 
   }
   

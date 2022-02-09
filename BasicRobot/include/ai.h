@@ -3,6 +3,6 @@
 namespace AI
 {
 
-
+  void AILoop();
 
 }

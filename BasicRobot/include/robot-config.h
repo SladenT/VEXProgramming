@@ -14,6 +14,8 @@ extern motor MR2;
 extern controller Controller1;
 extern digital_out doutA;
 
+extern bool AImode;
+
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
