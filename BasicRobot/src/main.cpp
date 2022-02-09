@@ -16,6 +16,7 @@
 #include "vex.h"
 #include "DriverControls.h"
 #include "Kinetics.h"
+#include "ai.h"
 
 using namespace vex;
 
@@ -31,8 +32,13 @@ int main() {
   exec = true;
   while (exec)
   {
-    control::ControlBot();
+    if (AImode)
+    {
+      AI::AILoop();
+    }
+    else 
+    {
+      control::ControlBot();
+    }
   }
-  
-
 }

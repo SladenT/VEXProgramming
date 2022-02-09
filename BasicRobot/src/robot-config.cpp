@@ -19,6 +19,8 @@ digital_out doutA = digital_out(Brain.ThreeWirePort.A);
 
 inertial accel = inertial(PORT10);
 
+bool AImode = false;
+
 void vexcodeInit( void ) {
   UI::UIRow test[3] = {UI::init, UI::init2, UI::init3};
   
