@@ -1,0 +1,3 @@
+namespace Kinetics {
+  void TestPosition();
+}

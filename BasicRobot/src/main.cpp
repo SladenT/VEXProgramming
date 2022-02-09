@@ -15,6 +15,7 @@
 
 #include "vex.h"
 #include "DriverControls.h"
+#include "Kinetics.h"
 
 using namespace vex;
 
@@ -31,7 +32,6 @@ int main() {
   while (exec)
   {
     control::ControlBot();
-
   }
   
 
