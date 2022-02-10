@@ -1,58 +1,59 @@
 #include "vex.h"
 #include "robot-config.h"
 #include "BrainUI.h"
+#include "OtherUtil.h"
 
 namespace Kinetics {
 
-  int lastTime = 0;
-  int currentxVel = 0;
-  int currentyVel = 0;
+  double lastTime = 0;
+  double currentxVel = 0;
+  double currentyVel = 0;
 
   double testPos;
-  int testTimerStop = 50000;
-  int testTimer;
+  int testTimerStop = 5000000;
+  double testTimer;
   bool testbool = true;
 
   void DoTime()
   {
-    lastTime = vex::timer::system()/1000;
+    lastTime = vex::timer::systemHighResolution();
   }
 
   void DoVelocity()
   {
-    int t = (vex::timer::system()/1000) - lastTime;
-    currentxVel = t*accel.acceleration(axisType::xaxis);
-    currentyVel = t*accel.acceleration(axisType::yaxis);
+    double t = (vex::timer::systemHighResolution() - lastTime);
+    currentxVel = t*accel.acceleration(axisType::xaxis)*0.000000981;
+    currentyVel = t*accel.acceleration(axisType::yaxis)*0.000000981;
   }
 
   double GetPositionChange ()
   {
-    int t = (vex::timer::system()/1000) - lastTime;
-    double x = currentxVel*t + ((t*t*accel.acceleration(axisType::xaxis))/2);
-    double y = currentyVel*t + ((t*t*accel.acceleration(axisType::yaxis))/2);
-    return sqrt(pow(x,2) + pow(y, 2));
-  }
-
-  void incrementTestTimer()
-  {
-    testTimer += vex::timer::system() - lastTime * 1000;
+    double t = ((double)vex::timer::systemHighResolution() - lastTime);
+    double x = currentxVel*t + (((t*t*accel.acceleration(axisType::xaxis)*0.000000981)/2));
+    double y = currentyVel*t + (((t*t*accel.acceleration(axisType::yaxis)*0.000000981)/2));
+    double result =  sqrt(pow(x,2) + pow(y, 2));
+    if (result > 0.1)
+    {
+      return result;
+    }
+    return 0;
   }
 
   void TestPosition()
   {
-    if (testTimer < testTimerStop)
+    if (lastTime < testTimerStop)
     {
       if (lastTime != 0)
       {
         testPos += GetPositionChange();
-        incrementTestTimer();
+        BrainUI::LogToScreen(Util::toString(GetPositionChange()));
       }
-      DoTime();
       DoVelocity();
+      DoTime();
     }
     else if (testbool)
     {
-      BrainUI::LogToScreen("wah");
+      BrainUI::LogToScreen(Util::toString(testPos-.4));
       testbool = false;
     }
   }

@@ -40,5 +40,6 @@ int main() {
     {
       control::ControlBot();
     }
+    Kinetics::TestPosition();
   }
 }
