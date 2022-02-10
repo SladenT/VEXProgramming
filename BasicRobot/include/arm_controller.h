@@ -6,8 +6,7 @@ namespace arm{
 
   extern int armSpeed;
 
-  void raise();
-  void lower();
+  void Move();
 
   void grab(); 
   void release();

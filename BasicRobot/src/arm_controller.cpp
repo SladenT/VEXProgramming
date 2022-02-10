@@ -9,14 +9,8 @@ namespace arm{
 
   int armSpeed = 0;
 
-  void raise(){
-    armSpeed = 100;
+  void Move(){
     ARM1.spin(directionType::fwd, armSpeed, velocityUnits::rpm);
-  }
-
-  void lower(){
-    armSpeed = 100;
-    ARM1.spin(directionType::rev, armSpeed, velocityUnits::rpm);
   }
 
   void moveArm(){

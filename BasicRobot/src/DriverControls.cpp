@@ -189,38 +189,22 @@ void buttonPresses(){
     } else {
       pressedX = 0;
     }
+    
+    arm::armSpeed = 0;
+    
 
     //UP Button
     if (Controller1.ButtonUp.pressing())
     {
-      if (pressedUp == 0)
-      {
-        arm::raise();
-        pressedUp = 1; 
-      }
-
-    } else {
-      pressedUp = 0;
-      
+      arm::armSpeed = -100;
     }
 
     //DOWN Button
     if (Controller1.ButtonDown.pressing())
     {
-      if (pressedDown == 0)
-      {
-        arm::lower();
-        pressedDown = 1; 
-      }
-
-    } else {
-      pressedDown = 0;
-      
+      arm::armSpeed = 100;
     }
-
-    if (!pressedDown && !pressedUp){
-      arm::armSpeed = 0;
-    }
+    arm::Move();
 
   }
 
