@@ -25,6 +25,10 @@ namespace control
   bool pressedB = 0;
   bool pressedY = 0;
   bool pressedX = 0;
+
+  bool pressedUp = 0;
+  bool pressedDown = 0;
+
   bool pressedBumper = 0; 
   
   int maxRPM = 550;
@@ -184,6 +188,32 @@ void buttonPresses(){
 
     } else {
       pressedX = 0;
+    }
+
+    //UP Button
+    if (Controller1.ButtonUp.pressing())
+    {
+      if (pressedUp == 0)
+      {
+        arm::raise();
+        pressedUp = 1; 
+      }
+
+    } else {
+      pressedUp = 0;
+    }
+
+    //DOWN Button
+    if (Controller1.ButtonDown.pressing())
+    {
+      if (pressedDown == 0)
+      {
+        arm::lower();
+        pressedDown = 1; 
+      }
+
+    } else {
+      pressedDown = 0;
     }
 
   }

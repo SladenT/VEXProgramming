@@ -4,6 +4,8 @@
 
 namespace arm{
 
+  void raise();
+  void lower();
 
   void grab(); 
   void release();
