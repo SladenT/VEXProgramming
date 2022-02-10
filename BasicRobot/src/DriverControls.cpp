@@ -201,6 +201,7 @@ void buttonPresses(){
 
     } else {
       pressedUp = 0;
+      
     }
 
     //DOWN Button
@@ -214,6 +215,10 @@ void buttonPresses(){
 
     } else {
       pressedDown = 0;
+      
+    }
+
+    if (!pressedDown && !pressedUp){
       arm::armSpeed = 0;
     }
 
