@@ -214,6 +214,7 @@ void buttonPresses(){
 
     } else {
       pressedDown = 0;
+      arm::armSpeed = 0;
     }
 
   }
@@ -239,6 +240,10 @@ void buttonPresses(){
     MotorControl();
 
     buttonPresses();
+
+
+  //  arm::moveArm();
+
 
     //Testing tostring
     //BrainUI::LogToScreen(Util::toString(maxRPM));
