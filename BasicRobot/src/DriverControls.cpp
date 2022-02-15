@@ -196,13 +196,13 @@ void buttonPresses(){
     //UP Button
     if (Controller1.ButtonUp.pressing())
     {
-      arm::armSpeed = -100;
+      arm::armSpeed = -maxRPM;
     }
 
     //DOWN Button
     if (Controller1.ButtonDown.pressing())
     {
-      arm::armSpeed = 100;
+      arm::armSpeed = maxRPM;
     }
     arm::Move();
 
