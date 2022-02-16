@@ -13,7 +13,7 @@
 
 #include <string>
 
-
+//Function used in other files to print to screen
 namespace BrainUI
 {
   void LogToScreen(std::string);

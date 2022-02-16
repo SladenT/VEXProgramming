@@ -1,9 +1,9 @@
 /*----------------------------------------------------------------------------*/
 /*
     Module:       arm_controller.h                                                     
-    Author:       Davis Teigeler                                            
-    Created:      26 Jan 2022                                               
-    Description:  Default header for V5 projects                               
+    Authors:      Zachary Spiggle, Davis Teigeler                                            
+    Created:      1 Feb 2022                                               
+    Description:  Declares functions used to control arm                            
 */
 /*----------------------------------------------------------------------------*/
 
