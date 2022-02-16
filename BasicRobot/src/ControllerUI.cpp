@@ -1,7 +1,18 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       ControllerUI.cpp                                                
+    Author:       Davis Tiegeler                            
+    Created:      1 Feb 2022                                               
+    Description:  Defines how UI operates on the Controller                     
+*/
+/*----------------------------------------------------------------------------*/
+
+//Includes
 #include "vex.h"
 #include "robot-config.h"
 #include "locale.h"
 #include "ControllerUI.h"
+
 
 namespace UI
 {

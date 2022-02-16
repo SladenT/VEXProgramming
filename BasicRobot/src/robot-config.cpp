@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       robot-config.cpp                                                
+    Authors:      Davis Tiegeler, Zachary Spiggle, VEX                                 
+    Created:      18 Jan 2022                                               
+    Description:  Sets up robotics motors and devices                      
+*/
+/*----------------------------------------------------------------------------*/
+
+//Includes
 #include "vex.h"
 #include "DriverControls.h"
 #include "ControllerUI.h"
@@ -22,6 +32,7 @@ digital_out doutA = digital_out(Brain.ThreeWirePort.A);
 
 inertial accel = inertial(PORT10);
 
+//Custom
 bool AImode = false;
 
 void vexcodeInit( void ) {

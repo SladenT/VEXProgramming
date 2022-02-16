@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       DriverControls.cpp                                                
+    Authors:      Davis Tiegeler, Zachary Spiggle                                       
+    Created:      18 Jan 2022                                               
+    Description:  Manual control of Robot instructions                            
+*/
+/*----------------------------------------------------------------------------*/
+
+//Includes
 #include "vex.h"
 #include "robot-config.h"
 
@@ -13,30 +23,30 @@ using namespace vex;
 namespace control
 {
 
+  //Initialize Variables
+
   //MR == Moter Right
   //ML == Motor Left
-
   double MRvel = 0;
   double MLvel = 0;
 
-  //double MRstickvel = 0;
-
+  //Button Presses
   bool pressedA = 0;
   bool pressedB = 0;
   bool pressedY = 0;
   bool pressedX = 0;
 
-  bool pressedUp = 0;
-  bool pressedDown = 0;
+  // bool pressedUp = 0;
+  // bool pressedDown = 0;
 
-  bool pressedBumper = 0; 
+  // bool pressedBumper = 0; 
   
+
+  //Max Speed control
   int maxRPM = 550;
 
-  //int control_state = 0;
-
-  //bumper thebumper = bumper('A');
-  bumper theBumper = bumper(Brain.ThreeWirePort.A);
+  //Example on defining bumper
+  // bumper theBumper = bumper(Brain.ThreeWirePort.A);
 
   /*
    Example on how to use a button: 
@@ -53,7 +63,7 @@ namespace control
   */
   
 
-
+  //Controls the driving motors
   void MotorControl()
   {
 
@@ -61,24 +71,24 @@ namespace control
     if (MRvel != 0)
     {
       MR.spin(directionType::fwd, MRvel, velocityUnits::rpm);
-      MR2.spin(directionType::fwd, MRvel, velocityUnits::rpm);
+      //MR2.spin(directionType::fwd, MRvel, velocityUnits::rpm);
     }
     else
     {
       MR.stop();
-      MR2.stop();
+      //MR2.stop();
     }
 
     //Motor Left
     if (MLvel != 0)
     {
       ML.spin(directionType::rev, MLvel, velocityUnits::rpm);
-      ML2.spin(directionType::rev, MLvel, velocityUnits::rpm);
+      //ML2.spin(directionType::rev, MLvel, velocityUnits::rpm);
     }
     else
     {
       ML.stop();
-      ML2.stop();
+      //ML2.stop();
     }
 
 
@@ -86,11 +96,13 @@ namespace control
     //Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
   }
 
+  //Controller input for Right Motors
   void MRControl()
   {
       //Axis 3 = y direction
       int y = -Util::Lerp(0, maxRPM, Controller1.Axis3.position()/100.0); // Vertical
       int x;
+
       if (Controller1.Axis4.position() < 10  &&  Controller1.Axis4.position() > -10)
       {
         x = 0;
@@ -99,9 +111,11 @@ namespace control
       {
         x = Util::Lerp(0, maxRPM, Controller1.Axis4.position()/100.0); //Horizontal
       } 
+
       MRvel += x+y;
   }
 
+  //Controller input for Left Motors
   void MLControl()
   {
       int y = -Util::Lerp(0, maxRPM, Controller1.Axis3.position()/100.0);
@@ -118,8 +132,11 @@ namespace control
   }
 
 
-//Switch functionality
-void buttonPresses(){
+  //Button press checks
+  void buttonPresses(){
+
+    //Single button presses:
+
     //A Button Single Press
     if (Controller1.ButtonA.pressing())
     {
@@ -193,6 +210,10 @@ void buttonPresses(){
     arm::armSpeed = 0;
     
 
+    //Held Button presses: 
+
+    //CHANGE TO OTHER STICK OR SINGLE PRESS BUTTON, THIS IS FOR TESTING
+
     //UP Button
     if (Controller1.ButtonUp.pressing())
     {
@@ -205,7 +226,8 @@ void buttonPresses(){
       arm::armSpeed = maxRPM;
     }
 
-    arm::moveArm();
+
+
 
   }
 
@@ -222,27 +244,26 @@ void buttonPresses(){
     MRvel = 0;
     MLvel = 0;
 
-
+    //Get Controller motor control
     MRControl();
     MLControl();
 
-
+    //Move wheels
     MotorControl();
 
+    //get button inputs and execute
     buttonPresses();
 
+    //Move arm based on button presses (Change later)
+    arm::moveArm();
 
-  //  arm::moveArm();
 
 
-    //Testing tostring
-    //BrainUI::LogToScreen(Util::toString(maxRPM));
 
     
 
-    
-
-
+  
+    //Example of button reading
     // if (theBumper.pressing())
     // {
     //   if (pressedBumper == 0)
@@ -250,7 +271,6 @@ void buttonPresses(){
     //     BrainUI::LogToScreen("OUCH");   
     //     pressedBumper = 1; 
     //   }
-
     // } else {
     //   pressedBumper = 0;
     // }

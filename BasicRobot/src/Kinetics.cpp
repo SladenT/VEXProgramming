@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       Kinetics.cpp                                                
+    Author:       Davis Tiegeler                               
+    Created:      7 Feb 2022                                               
+    Description:                      
+*/
+/*----------------------------------------------------------------------------*/
+
+//Includes
 #include "vex.h"
 #include "robot-config.h"
 #include "BrainUI.h"

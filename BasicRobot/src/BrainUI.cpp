@@ -1,3 +1,12 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       BrainUI.cpp                                                
+    Author:       Zachary Spiggle                                
+    Created:      1 Feb 2022                                               
+    Description:  Defines Brain display and functionality                     
+*/
+/*----------------------------------------------------------------------------*/
+
 #include "vex.h"
 #include "robot-config.h"
 
@@ -6,6 +15,7 @@ using namespace vex;
 
 namespace BrainUI
 {
+    //Set up vars
     int yPrintPos = 20; 
     int maxMessages = 10;
     int ySpacing = 20;
