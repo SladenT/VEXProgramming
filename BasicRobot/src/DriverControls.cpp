@@ -204,7 +204,8 @@ void buttonPresses(){
     {
       arm::armSpeed = maxRPM;
     }
-    arm::Move();
+
+    arm::moveArm();
 
   }
 

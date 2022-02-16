@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       robot-config.h                                                     
+    Author:       Vex Robotics                                              
+    Created:      1 Feb 2019                                                
+    Description:  Sets up robot configuration                               
+*/
+/*----------------------------------------------------------------------------*/
+
+
 //Header Guard
 #pragma once
 

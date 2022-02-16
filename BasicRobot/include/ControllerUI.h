@@ -1,4 +1,16 @@
+/*----------------------------------------------------------------------------*/
+/*
+    Module:       ControllerUI.h                                                     
+    Author:       Davis Teigeler                                            
+    Created:      3 Feb 2022                                               
+    Description:  Elements used in the Control UI                             
+*/
+/*----------------------------------------------------------------------------*/
+
+//Header Guard
 #pragma once
+
+
 namespace UI
 {
   void DisplayControls();

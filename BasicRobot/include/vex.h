@@ -1,18 +1,18 @@
 /*----------------------------------------------------------------------------*/
-/*                                                                            */
-/*    Module:       vex.h                                                     */
-/*    Author:       Vex Robotics                                              */
-/*    Created:      1 Feb 2019                                                */
-/*    Description:  Default header for V5 projects                            */
-/*                                                                            */
+/*
+    Module:       vexx.h                                                     
+    Author:       Vex Robotics                                              
+    Created:      1 Feb 2019                                                
+    Description:  Default header for V5 projects                               
+*/
 /*----------------------------------------------------------------------------*/
-//
+ 
 
 //Header Guard
 #pragma once
 
 
-
+//Include statements
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +23,7 @@
 
 #include "robot-config.h"
 
+//Define utility 
 #define waitUntil(condition)                                                   \
   do {                                                                         \
     wait(5, msec);                                                             \
