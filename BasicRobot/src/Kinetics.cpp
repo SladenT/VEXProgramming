@@ -16,13 +16,35 @@
 namespace Kinetics {
 
   double lastTime = 0;
-  double currentxVel = 0;
-  double currentyVel = 0;
+  double lastxVel = 0;
+  double lastyVel = 0;
+  double currentxPos = 0;
+  double currentyPos = 0;
+  double lastxPos = 0;
+  double lastyPos = 0;
+  double lastxAccel = 0;
+  double lastyAccel = 0;
 
-  double testPos;
-  int testTimerStop = 5000000;
-  double testTimer;
-  bool testbool = true;
+  int mod = 1;
+
+  double GetSmoothXAccel()
+  {
+    double x = accel.acceleration(axisType::xaxis);
+    if (x < 0.01 && x > -0.01)
+    {
+      x = 0;
+    }
+    return x * 9.81;
+  }
+  double GetSmoothYAccel()
+  {
+    double x = accel.acceleration(axisType::yaxis);
+    if (x < 0.01 && x > -0.01)
+    {
+      x = 0;
+    }
+    return x * 9.81;
+  }
 
   void DoTime()
   {
@@ -31,40 +53,39 @@ namespace Kinetics {
 
   void DoVelocity()
   {
-    double t = (vex::timer::systemHighResolution() - lastTime);
-    currentxVel = t*accel.acceleration(axisType::xaxis)*0.000000981;
-    currentyVel = t*accel.acceleration(axisType::yaxis)*0.000000981;
+    double t = (vex::timer::systemHighResolution() - lastTime)/1000000;
+    lastxVel = (currentxPos - lastxPos)/t;
+    lastyVel = (currentyPos - lastyPos)/t;
+    lastxPos = currentxPos;
+    lastyPos = currentyPos;
   }
 
-  double GetPositionChange ()
+  void DoAccel()
   {
-    double t = ((double)vex::timer::systemHighResolution() - lastTime);
-    double x = currentxVel*t + (((t*t*accel.acceleration(axisType::xaxis)*0.000000981)/2));
-    double y = currentyVel*t + (((t*t*accel.acceleration(axisType::yaxis)*0.000000981)/2));
-    double result =  sqrt(pow(x,2) + pow(y, 2));
-    if (result > 0.1)
-    {
-      return result;
-    }
-    return 0;
+    lastxAccel = GetSmoothXAccel();
+    lastyAccel = GetSmoothYAccel();
+  }
+
+  void DoPosition ()
+  {
+    double t = ((double)vex::timer::systemHighResolution() - lastTime)/1000000;
+    double ax = (lastxAccel + GetSmoothXAccel())/2;
+    double ay = (lastyAccel + GetSmoothYAccel())/2;
+    currentxPos = lastxPos + lastxVel*t + (((t*t*ax)/2));
+    currentyPos = lastyPos + lastyVel*t + (((t*t*ay)/2));
   }
 
   void TestPosition()
   {
-    if (lastTime < testTimerStop)
+    DoPosition();
+    DoVelocity();
+    DoAccel();
+    DoTime();
+    if (vex::timer::systemHighResolution()/mod > 1000000)
     {
-      if (lastTime != 0)
-      {
-        testPos += GetPositionChange();
-        BrainUI::LogToScreen(Util::toString(GetPositionChange()));
-      }
-      DoVelocity();
-      DoTime();
-    }
-    else if (testbool)
-    {
-      BrainUI::LogToScreen(Util::toString(testPos-.4));
-      testbool = false;
+      BrainUI::LogToScreen("X: " + Util::toString(currentxPos));
+      BrainUI::LogToScreen("Y: " + Util::toString(currentyPos));
+      mod += 1;
     }
   }
 
