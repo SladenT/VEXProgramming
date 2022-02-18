@@ -18,6 +18,8 @@ MR2                  motor         17
 ARM1                 motor         09
 accel                inertial      10
 
+AAM                  motor         11
+
 ---- END VEXCODE CONFIGURED DEVICES ----*/
 
 //Includes

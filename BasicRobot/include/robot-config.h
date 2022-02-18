@@ -22,6 +22,8 @@ extern motor MR;
 extern motor ML2;
 extern motor MR2;
 
+extern motor AAM;
+
 extern motor ARM1;
 
 extern controller Controller1;

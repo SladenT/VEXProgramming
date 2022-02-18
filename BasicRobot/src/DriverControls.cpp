@@ -30,6 +30,8 @@ namespace control
   double MRvel = 0;
   double MLvel = 0;
 
+  double AAMlvl = 0;
+
   //Button Presses
   bool pressedA = 0;
   bool pressedB = 0;
@@ -91,6 +93,11 @@ namespace control
       //ML2.stop();
     }
 
+    if (AAMlvl != 0){
+      AAM.spin(directionType::rev, AAMlvl, velocityUnits::rpm);
+    } else {
+      AAM.stop();
+    }
 
     //Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);
     //Brain.Screen.printAt(20, 40, "Left Motor Speed: %f", MLvel);
@@ -128,9 +135,17 @@ namespace control
       {
         x = -Util::Lerp(0, maxRPM, Controller1.Axis4.position()/100.0);
       }
+
       MLvel += x+y;
   }
 
+
+  void AAMControl()
+  {
+      int y = -Util::Lerp(0, maxRPM, Controller1.Axis2.position()/100.0);
+
+      AAMlvl = y;
+  }
 
   //Button press checks
   void buttonPresses(){
@@ -248,6 +263,8 @@ namespace control
     MRControl();
     MLControl();
 
+    AAMControl();
+
     //Move wheels
     MotorControl();
 
@@ -257,6 +274,7 @@ namespace control
     //Move arm based on button presses (Change later)
     arm::moveArm();
 
+    
 
 
 
