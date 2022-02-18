@@ -22,15 +22,15 @@ namespace Kinetics {
   double currentyPos = 0;
   double lastxPos = 0;
   double lastyPos = 0;
-  double lastxAccel = 0;
-  double lastyAccel = 0;
+  double averagexAccel = 0;
+  double averageyAccel = 0;
 
-  int mod = 1;
+  int accelCounter = 0;
 
   double GetSmoothXAccel()
   {
     double x = accel.acceleration(axisType::xaxis);
-    if (x < 0.01 && x > -0.01)
+    if (x < 0.03 && x > -0.03)
     {
       x = 0;
     }
@@ -39,7 +39,8 @@ namespace Kinetics {
   double GetSmoothYAccel()
   {
     double x = accel.acceleration(axisType::yaxis);
-    if (x < 0.01 && x > -0.01)
+    
+    if (x < 0.03 && x > -0.03)
     {
       x = 0;
     }
@@ -48,44 +49,60 @@ namespace Kinetics {
 
   void DoTime()
   {
-    lastTime = vex::timer::systemHighResolution();
+    lastTime = vex::timer::system();
   }
 
   void DoVelocity()
   {
-    double t = (vex::timer::systemHighResolution() - lastTime)/1000000;
-    lastxVel = (currentxPos - lastxPos)/t;
-    lastyVel = (currentyPos - lastyPos)/t;
+    double t = (vex::timer::system() - lastTime)/1000;
+    // lastxVel = (currentxPos - lastxPos)/t;
+    // lastyVel = (currentyPos - lastyPos)/t;
+    lastxVel = lastxVel + averagexAccel * t;
+    lastyVel = lastyVel + averageyAccel * t;
     lastxPos = currentxPos;
     lastyPos = currentyPos;
-  }
-
-  void DoAccel()
-  {
-    lastxAccel = GetSmoothXAccel();
-    lastyAccel = GetSmoothYAccel();
+    averagexAccel = 0;
+    averageyAccel = 0;
+    accelCounter = 0;
   }
 
   void DoPosition ()
   {
-    double t = ((double)vex::timer::systemHighResolution() - lastTime)/1000000;
-    double ax = (lastxAccel + GetSmoothXAccel())/2;
-    double ay = (lastyAccel + GetSmoothYAccel())/2;
-    currentxPos = lastxPos + lastxVel*t + (((t*t*ax)/2));
-    currentyPos = lastyPos + lastyVel*t + (((t*t*ay)/2));
+    double t = ((double)vex::timer::system() - lastTime)/1000;
+    currentxPos = lastxPos + lastxVel*t + (t*t*averagexAccel);
+    currentyPos = lastyPos + lastyVel*t + (t*t*averageyAccel);
+  }
+
+  void AverageAccelCount()
+  {
+    // Need to change the values so that they change according to rotation in smooth accel
+    averagexAccel += GetSmoothXAccel();
+    averageyAccel += GetSmoothYAccel();
+    accelCounter += 1;
+  }
+
+  void GetAverageAccel()
+  {
+    averagexAccel = averagexAccel/accelCounter;
+    averageyAccel = averageyAccel/accelCounter;
+  }
+
+  void Loop()
+  {
+    GetAverageAccel();
+    DoPosition();
+    DoVelocity();
+    DoTime();
   }
 
   void TestPosition()
   {
-    DoPosition();
-    DoVelocity();
-    DoAccel();
-    DoTime();
-    if (vex::timer::systemHighResolution()/mod > 1000000)
+    AverageAccelCount();
+    if (vex::timer::system() -  lastTime >= 1)
     {
-      BrainUI::LogToScreen("X: " + Util::toString(currentxPos));
+      Loop();
+      BrainUI::LogToScreen("X: " + Util::toString(GetSmoothXAccel()));
       BrainUI::LogToScreen("Y: " + Util::toString(currentyPos));
-      mod += 1;
     }
   }
 
