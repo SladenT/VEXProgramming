@@ -45,7 +45,7 @@ namespace control
   
 
   //Max Speed control
-  int maxRPM = 550;
+  int maxRPM = 150;
   int maxArmRPM = 50;
 
   //Example on defining bumper
@@ -186,7 +186,7 @@ namespace control
       if (pressedB == 0)
       {
         BrainUI::LogToScreen("Set RPM to 350");   
-        maxRPM = 350;  
+        maxRPM = 50;  
         pressedB = 1; 
       }
 
@@ -200,7 +200,7 @@ namespace control
       if (pressedY == 0)
       {
         BrainUI::LogToScreen("Set RPM to 450");   
-        maxRPM = 450;
+        maxRPM = 100;
 
         pressedY = 1; 
       }
@@ -215,7 +215,7 @@ namespace control
       if (pressedX == 0)
       {
         BrainUI::LogToScreen("Set RPM to 550");   
-        maxRPM = 550;
+        maxRPM = 150;
         pressedX = 1; 
       }
 
