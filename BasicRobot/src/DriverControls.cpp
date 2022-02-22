@@ -46,6 +46,7 @@ namespace control
 
   //Max Speed control
   int maxRPM = 550;
+  int maxArmRPM = 50;
 
   //Example on defining bumper
   // bumper theBumper = bumper(Brain.ThreeWirePort.A);
@@ -142,7 +143,7 @@ namespace control
 
   void AAMControl()
   {
-      int y = -Util::Lerp(0, maxRPM, Controller1.Axis2.position()/100.0);
+      int y = -Util::Lerp(0, maxArmRPM, Controller1.Axis2.position()/100.0);
 
       AAMlvl = y;
   }

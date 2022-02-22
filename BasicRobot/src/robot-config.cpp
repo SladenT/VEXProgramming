@@ -25,8 +25,10 @@ motor MR = motor(PORT15, ratio6_1, false);
 motor ML2 = motor(PORT16, ratio6_1, false);
 motor MR2 = motor(PORT17, ratio6_1, false);
 
+// Claw
 motor ARM1 = motor(PORT9, ratio6_1, false);
 
+// Arm Motor
 motor AAM = motor(PORT11, ratio6_1, false);
 
 controller Controller1 = controller(controllerType::primary);
