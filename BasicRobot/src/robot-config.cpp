@@ -26,7 +26,7 @@ motor ML2 = motor(PORT16, ratio18_1, false);
 motor MR2 = motor(PORT17, ratio18_1, false);
 
 // Claw
-motor ARM1 = motor(PORT9, ratio36_1, false);
+motor ARM1 = motor(PORT9, ratio18_1, false);
 
 // Arm Motor
 motor AAM = motor(PORT11, ratio36_1, false);

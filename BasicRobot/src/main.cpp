@@ -30,8 +30,26 @@ AAM                  motor         11
 
 using namespace vex;
 
-//Execute
-bool exec;
+competition comp;
+
+
+void autoMode()
+{
+  while (comp.isAutonomous())
+  {
+    AI::AILoop();
+  }
+  
+}
+
+void driverMode()
+{
+  while (comp.isDriverControl())
+  {
+    control::ControlBot();
+  }
+}
+
 
 //Main Loop
 int main() {
@@ -39,25 +57,12 @@ int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
 
-
-  exec = true;
+  comp.drivercontrol(driverMode);
+  comp.autonomous(autoMode);
 
   //Infinite loop until program is force stopped
-  while (exec)
+  while (true)
   {
-    
-    //If in AImode, run the AI script, otherwise control manually
-    if (AImode)
-    {
-      AI::AILoop();
-    }
-    else 
-    {
-      control::ControlBot();
-    }
-
-
     Kinetics::TestPosition();
-
   }
 }

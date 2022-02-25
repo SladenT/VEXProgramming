@@ -233,13 +233,13 @@ namespace control
     //UP Button
     if (Controller1.ButtonUp.pressing())
     {
-      arm::armSpeed = -maxRPM;
+      arm::armSpeed = -200;
     }
 
     //DOWN Button
     if (Controller1.ButtonDown.pressing())
     {
-      arm::armSpeed = maxRPM;
+      arm::armSpeed = 200;
     }
 
 
