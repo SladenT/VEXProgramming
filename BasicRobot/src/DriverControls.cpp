@@ -31,6 +31,7 @@ namespace control
   double MLvel = 0;
 
   double AAMlvl = 0;
+  double AAM2lvl = 0;
 
   //Button Presses
   bool pressedA = 0;
@@ -96,8 +97,10 @@ namespace control
 
     if (AAMlvl != 0){
       AAM.spin(directionType::rev, AAMlvl, velocityUnits::rpm);
+      AAM2.spin(directionType::fwd, AAMlvl, velocityUnits::rpm);
     } else {
       AAM.stop();
+      AAM2.stop();
     }
 
     //Brain.Screen.printAt(20, 20, "Right Motor Speed: %f", MRvel);

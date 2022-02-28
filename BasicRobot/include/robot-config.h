@@ -23,6 +23,7 @@ extern motor ML2;
 extern motor MR2;
 
 extern motor AAM;
+extern motor AAM2;
 
 extern motor ARM1;
 
