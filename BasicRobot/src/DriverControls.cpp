@@ -95,7 +95,7 @@ namespace control
       //ML2.stop();
     }
 
-    if (AAMlvl != 0){
+    if (AAMlvl != 0  && ((AAM2.rotation(rotationUnits::rev) < 1.0) || (AAMlvl< 0))){
       AAM.spin(directionType::rev, AAMlvl, velocityUnits::rpm);
       AAM2.spin(directionType::fwd, AAMlvl, velocityUnits::rpm);
     } else {
@@ -146,9 +146,21 @@ namespace control
 
   void AAMControl()
   {
-      int y = -Util::Lerp(0, maxArmRPM, Controller1.Axis2.position()/100.0);
+      if (Controller1.ButtonR1.pressing())
+      {
+        AAMlvl = 150;
+      }
+      else if (Controller1.ButtonR2.pressing())
+      {
+        AAMlvl = -150;
+      }
+      else
+      {
+        AAMlvl = 0;
+      }
+      //int y = -Util::Lerp(0, maxArmRPM, Controller1.Axis2.position()/100.0);
 
-      AAMlvl = y;
+      //AAMlvl = y;
   }
 
   //Button press checks
@@ -229,20 +241,14 @@ namespace control
     arm::armSpeed = 0;
     
 
-    //Held Button presses: 
-
-    //CHANGE TO OTHER STICK OR SINGLE PRESS BUTTON, THIS IS FOR TESTING
-
-    //UP Button
-    if (Controller1.ButtonUp.pressing())
-    {
-      arm::armSpeed = -200;
-    }
-
-    //DOWN Button
-    if (Controller1.ButtonDown.pressing())
+    // Claw control
+    if (Controller1.ButtonL2.pressing())
     {
       arm::armSpeed = 200;
+    }
+    if (Controller1.ButtonL1.pressing())
+    {
+      arm::armSpeed = -200;
     }
 
 

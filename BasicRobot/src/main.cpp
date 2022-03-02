@@ -32,37 +32,24 @@ using namespace vex;
 
 competition comp;
 
-
-void autoMode()
-{
-  while (comp.isAutonomous())
-  {
-    AI::AILoop();
-  }
-  
-}
-
-void driverMode()
-{
-  while (comp.isDriverControl())
-  {
-    control::ControlBot();
-  }
-}
-
-
 //Main Loop
 int main() {
 
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-
-  comp.drivercontrol(driverMode);
-  comp.autonomous(autoMode);
+  
 
   //Infinite loop until program is force stopped
   while (true)
   {
-    Kinetics::TestPosition();
+    if (comp.isAutonomous())
+    {
+      AI::AILoop();
+    }
+    if (comp.isDriverControl())
+    {
+      control::ControlBot();
+    }
+    //Kinetics::TestPosition();
   }
 }
