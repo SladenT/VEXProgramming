@@ -36,10 +36,20 @@ namespace AI{
     ML.spin(directionType::rev, speed, velocityUnits::rpm);
   }
 
+  void openClaw(){
+    ARM1.spin(directionType::rev, 50, velocityUnits::rpm);
+  }
+
+  void closeClaw(){
+    ARM1.spin(directionType::fwd, 50, velocityUnits::rpm);
+  }
+
+
   void aistop()
   {
     MR.stop();
     ML.stop();
+    ARM1.stop();
   }
 
 
@@ -71,12 +81,14 @@ namespace AI{
     if (section == 0)
     {
       doTime();
-      tTime = 1000;
+      tTime = 500;
       section++;
     }
+
+    //OPEN CLAW
     if ((vex::timer::system() - lastTime < tTime) && section == 1)
     {
-      goForward(100);
+      openClaw();
     }
     else if ((vex::timer::system() - lastTime > tTime) && section == 1)
     {
@@ -86,6 +98,34 @@ namespace AI{
       aistop();
     }
 
+    //GO FOWARD
+    if ((vex::timer::system() - lastTime < tTime) && section == 1)
+    {
+      goForward(100);
+    }
+    else if ((vex::timer::system() - lastTime > tTime) && section == 1)
+    {
+      doTime();
+      tTime = 500;
+      section++;
+      aistop();
+
+    }
+
+    //CLOSE CLAW
+    if ((vex::timer::system() - lastTime < tTime) && section == 1)
+    {
+      closeClaw();
+    }
+    else if ((vex::timer::system() - lastTime > tTime) && section == 1)
+    {
+      doTime();
+      tTime = 1000;
+      section++;
+      aistop();
+    }
+
+    // REVERSE WITH GOAL
     if ((vex::timer::system() - lastTime < tTime) && section == 2)
     {
       reverse(100);
@@ -93,7 +133,7 @@ namespace AI{
     else if ((vex::timer::system() - lastTime > tTime) && section == 2)
     {
       doTime();
-      tTime = 500;
+      tTime = 0;
       section++;
       aistop();
     }
