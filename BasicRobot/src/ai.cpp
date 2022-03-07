@@ -36,20 +36,33 @@ namespace AI{
     ML.spin(directionType::rev, speed, velocityUnits::rpm);
   }
 
-  void openClaw(){
-    ARM1.spin(directionType::rev, 50, velocityUnits::rpm);
+  void openClaw(int speed){
+    ARM1.spin(directionType::rev, speed, velocityUnits::rpm);
   }
 
-  void closeClaw(){
-    ARM1.spin(directionType::fwd, 50, velocityUnits::rpm);
+  void closeClaw(int speed){
+    ARM1.spin(directionType::fwd, speed, velocityUnits::rpm);
   }
 
+  void raiseArm(int speed)
+  {
+    AAM.spin(directionType::rev, speed, velocityUnits::rpm);
+    AAM2.spin(directionType::fwd, speed, velocityUnits::rpm);
+  }
+  
+  void lowerArm(int speed)
+  {
+    AAM.spin(directionType::fwd, speed, velocityUnits::rpm);
+    AAM2.spin(directionType::rev, speed, velocityUnits::rpm);
+  }
 
   void aistop()
   {
     MR.stop();
     ML.stop();
     ARM1.stop();
+    AAM.stop();
+    AAM2.stop();
   }
 
 
@@ -88,7 +101,7 @@ namespace AI{
     //OPEN CLAW
     if ((vex::timer::system() - lastTime < tTime) && section == 1)
     {
-      openClaw();
+      openClaw(50);
     }
     else if ((vex::timer::system() - lastTime > tTime) && section == 1)
     {
@@ -115,7 +128,7 @@ namespace AI{
     //CLOSE CLAW
     if ((vex::timer::system() - lastTime < tTime) && section == 1)
     {
-      closeClaw();
+      closeClaw(50);
     }
     else if ((vex::timer::system() - lastTime > tTime) && section == 1)
     {
