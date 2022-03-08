@@ -32,7 +32,7 @@ motor ARM1 = motor(PORT9, ratio18_1, false);
 motor AAM = motor(PORT20, ratio36_1, false);
 
 // Arm Motor2
-motor AAM2 = motor(PORT11, ratio36_1, false);
+motor AAM2 = motor(PORT10, ratio36_1, false);
 
 controller Controller1 = controller(controllerType::primary);
 digital_out doutA = digital_out(Brain.ThreeWirePort.A);
