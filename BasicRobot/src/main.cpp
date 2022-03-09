@@ -43,6 +43,7 @@ int main() {
   //Infinite loop until program is force stopped
   while (true)
   {
+    // Main Loop
     if (comp.isEnabled())
     {
       if (comp.isAutonomous())
@@ -57,9 +58,8 @@ int main() {
     }
     if (!comp.isEnabled())
     {
+      //Reset our AI program counter
       AI::section = 0;
     }
-    
-    //Kinetics::TestPosition();
   }
 }
