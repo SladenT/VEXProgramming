@@ -15,10 +15,11 @@ ML                   motor         14
 ML2                  motor         16  
 MR                   motor         15
 MR2                  motor         17  
-ARM1                 motor         09
+ARM1                 motor         11
 accel                inertial      10
 
-AAM                  motor         11
+AAM                  motor         20
+AAM2                 motor         10
 
 ---- END VEXCODE CONFIGURED DEVICES ----*/
 
@@ -42,14 +43,23 @@ int main() {
   //Infinite loop until program is force stopped
   while (true)
   {
-    if (comp.isAutonomous())
+    if (comp.isEnabled())
     {
-      AI::AILoop();
+      if (comp.isAutonomous())
+      {
+        AI::AILoop();
+      }
+      if (comp.isDriverControl())
+      {
+        AI::section = 0;
+        control::ControlBot();
+      }
     }
-    if (comp.isDriverControl())
+    if (!comp.isEnabled())
     {
-      control::ControlBot();
+      AI::section = 0;
     }
+    
     //Kinetics::TestPosition();
   }
 }

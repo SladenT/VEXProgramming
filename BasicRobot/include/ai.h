@@ -15,5 +15,6 @@ namespace AI
 {
 
   void AILoop();
+  extern int section;
 
 }
