@@ -112,26 +112,41 @@ namespace AI{
       section++;
     }
 
-    //OPEN CLAW
+    //RAISE ARM
     if ((vex::timer::system() - lastTime < tTime) && section == 1)
     {
-      openClaw(100);
-      goForward(150);
+      raiseArm(100);
     }
     else if ((vex::timer::system() - lastTime > tTime) && section == 1)
     {
       doTime();
-      tTime = 2000;
-      stopClaw();
+      tTime = 200;
+      stopArm();
+      section++;
+    }
+
+
+
+    //OPEN CLAW
+    if ((vex::timer::system() - lastTime < tTime) && section == 2)
+    {
+      openClaw(100);
+      goForward(150);
+    }
+    else if ((vex::timer::system() - lastTime > tTime) && section == 2)
+    {
+      doTime();
+      tTime = 1700;
+      //stopClaw();
       section++;
     }
 
     //GO FOWARD
-    if ((vex::timer::system() - lastTime < tTime) && section == 2)
+    if ((vex::timer::system() - lastTime < tTime) && section == 3)
     {
       goForward(150);
     }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 2)
+    else if ((vex::timer::system() - lastTime > tTime) && section == 3)
     {
       doTime();
       tTime = 500;
@@ -141,11 +156,11 @@ namespace AI{
     }
 
     //CLOSE CLAW
-    if ((vex::timer::system() - lastTime < tTime) && section == 3)
+    if ((vex::timer::system() - lastTime < tTime) && section == 4)
     {
       closeClaw(100);
     }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 3)
+    else if ((vex::timer::system() - lastTime > tTime) && section == 4)
     {
       doTime();
       tTime = 2000;
@@ -153,62 +168,63 @@ namespace AI{
     }
 
     // REVERSE WITH GOAL
-    if ((vex::timer::system() - lastTime < tTime) && section == 4)
-    {
-      reverse(100);
-    }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 4)
-    {
-      doTime();
-      tTime = 0;
-      section++;
-      stopMove();
-    }
-
-    //RELEASE GOAL
     if ((vex::timer::system() - lastTime < tTime) && section == 5)
     {
-      openClaw(50);
+      reverse(100);
     }
     else if ((vex::timer::system() - lastTime > tTime) && section == 5)
     {
       doTime();
       tTime = 500;
       section++;
-      aistop();
+      stopMove();
     }
 
+    //RELEASE GOAL
     if ((vex::timer::system() - lastTime < tTime) && section == 6)
     {
-      reverse(100);
+      openClaw(100);
     }
     else if ((vex::timer::system() - lastTime > tTime) && section == 6)
     {
       doTime();
-      tTime = 170;
+      tTime = 700;
+      section++;
+      aistop();
+    }
+
+    //REVERSE WITHOUT GOAL
+    if ((vex::timer::system() - lastTime < tTime) && section == 7)
+    {
+      reverse(100);
+    }
+    else if ((vex::timer::system() - lastTime > tTime) && section == 7)
+    {
+      doTime();
+      tTime = 110;
       section++;
       aistop();
     }
 
     //TURN
-    if ((vex::timer::system() - lastTime < tTime) && section == 7)
+    if ((vex::timer::system() - lastTime < tTime) && section == 8)
     {
       aispin(100);
     }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 7)
+    else if ((vex::timer::system() - lastTime > tTime) && section == 8)
     {
       doTime();
-      tTime = 2700;
+      tTime = 3300;
       section++;
       aistop();
     }
 
     //FORWARD
-    if ((vex::timer::system() - lastTime < tTime) && section == 8)
+    if ((vex::timer::system() - lastTime < tTime) && section == 9)
     {
       goForward(100);
     }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 8)
+    else if ((vex::timer::system() - lastTime > tTime) && section == 9)
     {
       doTime();
       tTime = 200;
@@ -217,23 +233,23 @@ namespace AI{
     }
 
     //CLOSE CLAW
-    if ((vex::timer::system() - lastTime < tTime) && section == 9)
+    if ((vex::timer::system() - lastTime < tTime) && section == 10)
     {
       closeClaw(100);
     }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 9)
+    else if ((vex::timer::system() - lastTime > tTime) && section == 10)
     {
       doTime();
       tTime = 2700;
       section++;
     }
 
-        //CLOSE CLAW
-    if ((vex::timer::system() - lastTime < tTime) && section == 10)
+    //REVERSE 
+    if ((vex::timer::system() - lastTime < tTime) && section == 11)
     {
       reverse(100);
     }
-    else if ((vex::timer::system() - lastTime > tTime) && section == 10)
+    else if ((vex::timer::system() - lastTime > tTime) && section == 11)
     {
       doTime();
       tTime = 1000;
