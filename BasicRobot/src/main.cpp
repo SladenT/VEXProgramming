@@ -26,7 +26,6 @@ AAM2                 motor         19
 //Includes
 #include "vex.h"
 #include "DriverControls.h"
-#include "Kinetics.h"
 #include "ai.h"
 
 using namespace vex;
