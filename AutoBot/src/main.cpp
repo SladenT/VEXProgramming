@@ -43,23 +43,7 @@ int main() {
   //Infinite loop until program is force stopped
   while (true)
   {
-    if (comp.isEnabled())
-    {
-      if (comp.isAutonomous())
-      {
-        AI::AILoop();
-      }
-      if (comp.isDriverControl())
-      {
-        AI::section = 0;
-        control::ControlBot();
-      }
-    }
-    if (!comp.isEnabled())
-    {
-      AI::section = 0;
-    }
-    
-    //Kinetics::TestPosition();
+    AI::AILoop();
+
   }
 }
