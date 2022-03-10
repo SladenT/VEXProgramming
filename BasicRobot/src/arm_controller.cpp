@@ -21,9 +21,7 @@ namespace arm{
 
   //Call this in primary loop to move arm
   void moveArm(){
-
     ARM1.spin(directionType::rev, armSpeed, velocityUnits::rpm);
-
   }
 
 }

@@ -35,15 +35,8 @@ motor AAM = motor(PORT20, ratio36_1, false);
 motor AAM2 = motor(PORT19, ratio36_1, false);
 
 controller Controller1 = controller(controllerType::primary);
-digital_out doutA = digital_out(Brain.ThreeWirePort.A);
 
 inertial accel = inertial(PORT10);
 
-//Custom
-bool AImode = false;
-
 void vexcodeInit( void ) {
-  UI::UIRow test[3] = {UI::init, UI::init2, UI::init3};
-  
-  UI::ArrangeUI(test);
 }
